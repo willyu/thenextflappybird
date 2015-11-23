@@ -146,13 +146,14 @@ void scaffoldControlLogic()
   if (moveBox())
   {
     screenTransX = mouseX;
-    screenTransY = mouseY;
+    screenTransY = mouseY-200;
+    screenRotation++;
   }
   
   if (resizeBox())
   {
     screenZ = sqrt(2)*(dist(mouseX,mouseY,screenTransX,screenTransY) - grabSize/2);
-    screenRotation++;
+    
   }
 }
 
