@@ -10,6 +10,9 @@ float screenTransY = 0;
 float screenRotation = 0;
 float screenZ = 50f;
 
+float orig_mouse_X = 0;
+float orig_mouse_Y = 0;
+
 // designates the blue grab circle size
 int grabSize = 30;
 
@@ -145,19 +148,23 @@ void scaffoldControlLogic()
   
   if (moveBox())
   {
-    screenTransX = mouseX;
-    screenTransY = mouseY;
+    screenTransX -= mouseX - orig_mouse_X;
+    screenTransY -= mouseY - orig_mouse_Y;
+    screenRotation++;
   }
   
   if (resizeBox())
   {
     screenZ = sqrt(2)*(dist(mouseX,mouseY,screenTransX,screenTransY) - grabSize/2);
-    screenRotation++;
+    
   }
 }
 
 void mousePressed()
 {
+  orig_mouse_X= mouseX;
+  orig_mouse_Y= mouseY;
+  
   mousePressed = true;
 }
 
